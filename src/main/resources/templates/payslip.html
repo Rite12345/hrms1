@@ -1,0 +1,261 @@
+ <!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <title>Spring Boot - Thymeleaf</title>
+   
+    
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+  
+.column {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+.net {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+</head>
+ 
+ <body>
+ 
+  <div
+      id="tab"
+      width="50%"
+    > 
+  
+    <div >
+        <v-row style="  display:flex;
+     justify-content:center;
+     align-items:center;
+     
+  ">
+            <!-- <img src="file:///E:/hrms/hrms/src/main/resources/static/images/dizitiveitLogo.jpeg" style="margin-left:240px;width:200px "  alt="dizitiveit.com" />-->
+            <img th:src="@{/static/images/dizitiveitLogo.jpeg}" alt="dizitiveit.com"/>
+     
+        </v-row>
+        
+    </div>
+      <div>
+        <v-row style="width: 100%; margin:0px auto; text-align: left;color:black;font-size: 130%">
+           Payslip
+        </v-row>
+       
+        
+         <v-row style="width: 100%; margin:0px auto; text-align: left;color:black">
+ <h1 th:text="${payRoll!=null} ? ${payRoll.monthAndYear} : ''"  style=" font-size: 130%"></h1>
+        </v-row>
+       
+        </div>
+        
+      <section class="maincls">
+
+        <table
+          border="1"
+          width="60%"
+          style="border-collapse: collapse;color:black;margin-bottom:10px"
+          class="tableDeatails">
+          <tr>
+            <td colspan="12" th:text="${payRoll!=null} ? ${payRoll.employeeName} : ''" style="text-align:left"><span style="line-height:30px"></span></td>
+          </tr>
+
+          <tr style="background:#01009f">
+            <td colspan="4" style="text-align:left; color:white;padding:3px;width:35%"><b>Employee Details</b></td>
+            <td colspan="4" style="text-align:left;color:white;padding:3px;width:35% "><b>Payment & Leave Details</b></td>
+            <td colspan="4" style="text-align:left;color:white;padding:3px;width:30%"><b>Location Details</b></td>
+          </tr>
+          <tr >
+            <td colspan="2" style="text-align:left;padding:3px;"><b>Emp No</b></td>
+            <td colspan="2"  th:text="${payRoll!=null} ? ${payRoll.employeeId} : ''"  style="text-align:left;padding:3px;"></td>
+            <td colspan="2" style="text-align:left;padding:3px"><b>Bank Name</b></td>
+            <td colspan="2"  th:text="${payRoll!=null} ? ${payRoll.bankName} : ''" style="text-align:left;padding:3px"></td>
+            <td colspan="2" style="text-align:left;padding:3px"><b>Location</b></td>
+            <td colspan="2" th:text="${payRoll!=null} ? ${payRoll.location} : ''" style="text-align:left;padding:3px"></td>
+          </tr>
+          <tr >
+            <td colspan="2" style="text-align:left;padding:3px;"><b>Designation</b></td>
+            <td colspan="2"  th:text="${payRoll!=null} ? ${payRoll.Designation} : ''" style="text-align:left;padding:3px;"></td>
+            <td colspan="2" style="text-align:left;padding:3px"><b>A.C NO</b></td>
+            <td colspan="2" th:text="${payRoll!=null} ? ${payRoll.accountNumber} : ''"  style="text-align:left;padding:3px"></td>
+            <td colspan="2" style="text-align:left;padding:3px"><b>Base Branch</b></td>
+            <td colspan="2" th:text="${payRoll!=null} ? ${payRoll.baseBranch} : ''" style="text-align:left;padding:3px"></td>
+          </tr>
+          <tr >
+            <td colspan="2" style="text-align:left;padding:3px;"><b>Grade</b></td>
+            <td colspan="2"  th:text="${payRoll!=null} ? ${payRoll.grade} : ''" style="text-align:left;padding:3px;"></td>
+            <td colspan="2" style="text-align:left;padding:3px"><b>Days Paid</b></td>
+            <td colspan="2"  th:text="${payRoll!=null} ? ${payRoll.daysPaid} : ''" style="text-align:left;padding:3px"></td>
+            <td colspan="2" style="text-align:left;padding:3px"><b>Depute&nbsp;Branch</b></td>
+            <td colspan="2" style="text-align:left;padding:3px"></td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align:left;padding:3px;"><b>Pan No</b></td>
+            <td colspan="2" th:text="${payRoll!=null} ? ${payRoll.panCardNumber} : ''" style="text-align:left;padding:3px"></td>
+          <!--<td colspan="2" style="text-align:left;padding:3px;"> </td>-->
+          <td colspan="3" style="text-align:left;padding:3px"><b>Leave&nbsp;Balance</b></td>
+
+            
+             <td colspan="1" style="padding:0px" >
+              <table style="border-color:white;border-style:none">
+                      <tr>`
+                        <td style="border-right:1px solid;padding: 0 7px;margin:0px">SL</td> <td th:text="${payRoll!=null} ? ${payRoll.sickLeave} : ''"style="border-right:1px solid;padding: 0 7px;margin:0px"></td>
+                         <td style="border-right:1px solid;padding: 0 7px;margin:0px">CL</td> <td th:text="${payRoll!=null} ? ${payRoll.casualLeave} : ''" style="border-right:1px solid;padding: 0 7px;margin:0px"></td>
+                         <td style="border-right:1px solid;padding: 0 7px;margin:0px">LOP</td> <td th:text="${payRoll!=null} ? ${payRoll.lopDays} : ''" style="border-right:1px solid;padding: 0 7px;margin:0px"></td>
+
+                         <!--<td style="border-right:1px solid;padding: 0 7px;margin:0px" v-if="this.result.lop!=0">LOP</td> <td  v-if="this.result.lop!=0" style="padding:3px"></td>-->
+                     </tr>
+                    
+                    </table>
+
+             </td>
+                 <td colspan="2" style="text-align:left;padding:3px;"><b>Date of Joining</b></td>
+                 <td colspan="2" th:text="${payRoll!=null} ? ${payRoll.dateOfJoining} : ''" style="text-align:left;padding:3px;"></td>
+               
+          </tr>
+        </table>
+     
+     
+      
+       </div>
+       
+       
+        </div>
+       </div>
+         
+         
+         
+         
+
+        
+    <div class="row">
+  <div class="column">
+    <table>
+      <tr style="background:#01009f">
+        <th style="color: white;">Earnings</th>
+        <th style="color: white;">Amount</th>
+        
+      </tr>
+      
+           <tr  th:if="${payRoll.monthlySalarySummary.basicSalary!=0}">
+            <td  style="text-align:left;padding:3px;">Basic Salary</td>
+  			<td  th:text="${payRoll.monthlySalarySummary.basicSalary}" style="text-align:left;padding:3px;"> </td>
+  			</tr>
+      
+      
+      <tr th:each="lineAllow : ${allowanceList}">    
+          <td style="text-align:left;padding:3px;" th:text="${lineAllow.itemDetails}"><b></b></td>     
+    		 <td style="text-align:left;padding:3px;"th:text="${lineAllow.itemValue}"></td>    
+  			</tr>
+   			</td>
+      
+          </tr>
+          
+                      
+    </table>
+  </div>
+  <div class="column">
+    <table>
+      <tr style="background:#01009f">
+        <th style="color: white;">Deductions</th>
+        <th  style="color: white;">Amount</th>
+        
+      </tr>
+     <tr th:each="lineDeduc : ${deductionsList}">    
+          <td  style="text-align:left;padding:3px;" th:text="${lineDeduc.itemDetails}"><b></b></td>     
+    		 <td  style="text-align:left;padding:3px;"th:text="${lineDeduc.itemValue}"></td>    
+  			</tr>
+  			
+  			<tr  th:if="${payRoll.lop!=0}">
+          <td  style="text-align:left;padding:3px;">LOP</td>
+  			<td  th:text="${payRoll.lop}" style="text-align:left;padding:3px;"> </td>
+  			</tr>    
+         
+    </table>
+  </div>
+</div>
+    
+    <div class="row">
+  <div class="column">
+    <table>
+      <tr>
+       <td style="text-align:left;padding:3px;">Total Earnings</td>
+        <td colspan="3" style="text-align:left;padding:3px;" th:text="${payRoll!=null} ? ${payRoll.monthlySalarySummary.totalEarnings} : ''"></td>
+        
+      </tr>
+      
+    </table>
+  </div>
+  <div class="column">
+    <table>
+      <tr>
+       <td style="text-align:left;padding:3px;">Total Deductions</td>
+        <td colspan="3" style="text-align:left;padding:3px;" th:text="${payRoll!=null} ? ${payRoll.monthlySalarySummary.totalDeductions} : ''" ></td>
+        
+      </tr>
+      
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="net">
+    <table style="width:20%;margin-left:500px">
+      <tr>
+   
+        <tr>
+        <th style="background:#01009f;color: white;">Net Pay(INR)</th>
+        <th th:text="${payRoll!=null} ? ${payRoll.monthlySalarySummary.netSalary} : ''"style="background: white">Amount</th>
+        
+      </tr>
+      
+      </tr>
+      
+    </table>
+  </div>
+
+        <div style="width:50%; margin-top:30px auto; text-align: left"><span>Payslip generated on  </span><b><span th:text="${payRoll!=null} ? ${payRoll.generatedDate} : ''"></span></b></div>
+        <!-- <div  style="width: 100%; margin:30px auto; text-align: left" v-if="this.result.pfEmployeerContributor!=0.00"><span>*PF Employer Contribution was added to Gross as
+<br>the PF Registration formalities are pending<br> </span></div> -->
+      </section>
+
+    </div>
+ </body>
+</html>    
